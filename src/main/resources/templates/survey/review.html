@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<style>
+    #wrapper{
+        text-align: center;
+    }
+</style>
+<head th:replace="fragments/header :: header">
+    <title>Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyMemberHeader :: bodyMemberHeader" />
+    <div class="jumbotron">
+
+        <div th:text="${check.subject_name}+'님 평가를 시작합니다. 수정이 불가하니 신중하게 작성해주세요.'">피평가자</div><br>
+
+    </div>
+    <form role="form" th:action="@{/survey/{id}/review (id=${check.id})}" method="post">
+
+
+        <div th:each="q:${questions}">
+            <label th:text="${q.id+'. '+q.question}">설문</label>
+            <div th:each="m:${T(springproject.review.domain.Measure).values()}">
+                <input type="radio" th:name="${'a'+q.id}" th:value="${m.getValue()}" th:text="${m.name()}">
+
+            </div>
+            <br>
+        </div>
+        <div>
+            <label>6. 칭찬하고 싶은 점과 아쉬운 점</label>
+            <br>
+
+            <input type="text"  style="width:700px;height: 100px" name="a6">
+        </div>
+        <br><br>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </div>
+
+
+
+    </form>
+
+    <div th:replace="fragments/footer :: footer" />
+
+</div></body>
+
+</html>

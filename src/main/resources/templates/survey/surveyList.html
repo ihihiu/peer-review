@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyMemberHeader :: bodyMemberHeader"/>
+    <div>
+        <div>
+            <form th:object="${survey}" class="form-inline">
+                <p class="h3" th:text="${survey.year+'년도 '+survey.dept+' '+survey.quarter+' 동료평가'}"></p>
+            </form>
+
+        </div>
+
+        <table class="table table-striped" th:object="${memberCheckList}">
+            <thead>
+            <tr>
+                <th>피평가자</th>
+                <th>이메일</th>
+                <th>상태</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="check : ${memberCheckList}">
+                <td th:text="${check.subject_name}+'님'"></td>
+                <td th:text="${check.subject_id}+'@example.com'"></td>
+
+                <!--<td th:if="${member.status.toString()=='평가하기'}">
+                    <a th:href="'javascript:review('+${member.id}+')'"
+                       class="btn btn-danger">평가하기</a>
+
+                </td>-->
+
+
+                <td>
+                    <a th:if="${check.status.toString() == '평가하기'}" href="#"
+                       th:href="'javascript:review('+${check.id}+')'"
+                       class="btn btn-danger">평가하기</a>
+                    <a th:if="${check.status.toString() == '평가완료'}">평가완료</a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+    <div th:replace="fragments/footer :: footer"/>
+</div>
+</body>
+<script>
+    function review(id) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "get");
+        form.setAttribute("action", "/survey/" + id + "/review");
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+</script>
+</html>
+

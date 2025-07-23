@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyLeaderHeader :: bodyLeaderHeader"/>
+    <div>
+
+
+        <table class="table table-striped" th:object="${resultList}">
+            <thead>
+            <tr>
+                <th th:text="${session.loginMember.dept}+' 동료 평가 리스트'">평가 리스트</th>
+                <th> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="result : ${resultList}">
+                <td th:text="${result.year+'년도 '+result.quarter+' 평가 결과'}"></td>
+
+                <td>
+                    <a th:if="${result.count}!=0">결과 집계 중</a>
+                    <a th:if="${result.count}==0" class="btn btn-danger" th:href="@{/teamResult/{surveyId}(surveyId = ${result.id})}"> 결과보기</a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <div th:replace="fragments/footer :: footer"/>
+</div>
+</body>
+<script>
+
+</script>
+</html>
+

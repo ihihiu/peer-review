@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyLeaderHeader :: bodyLeaderHeader"/>
+
+    <div>
+        <h3 style="text-align: center" th:text="${survey.year+'년 '+survey.dept+' '+survey.quarter+' 동료 평가 결과'}"></h3>
+    </div>
+
+    <br><br>
+
+    <div class="accordion" id="accordionExample">
+        <div th:each="result:${results}" class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <div class="col" th:text="${result.subjectId}"></div>
+                    <div class="col" th:text="${'평점 평균 : '+#numbers.formatDecimal((result.a1+result.a2+result.a3+result.a4+result.a5)/result.count/5,1,2)}"></div>
+                </button>
+            </h2>
+            <div id="collapse" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+
+                    <div class="row">
+                        <div class="col">
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>평가 항목</th>
+                                    <th>점수 (5점 만점)</th>
+                                </tr>
+                                </thead>
+
+
+                                <tbody>
+                                <tr>
+                                    <td>상호 존중</td>
+                                    <td th:text="${#numbers.formatDecimal(result.a1/result.count,1,2)}"></td>
+                                </tr>
+                                <tr>
+                                    <td>솔선 수범</td>
+                                    <td th:text="${#numbers.formatDecimal(result.a2/result.count,1,2)}"></td>
+                                </tr>
+                                <tr>
+                                    <td>약속 이행</td>
+                                    <td th:text="${#numbers.formatDecimal(result.a3/result.count,1,2)}"></td>
+                                </tr>
+                                <tr>
+                                    <td>업무 방식의 혁신</td>
+                                    <td th:text="${#numbers.formatDecimal(result.a4/result.count,1,2)}"></td>
+                                </tr>
+                                <tr>
+                                    <td>긍정적인 의사소통</td>
+                                    <td th:text="${#numbers.formatDecimal(result.a5/result.count,1,2)}"></td>
+                                </tr>
+
+
+                                </tbody>
+
+
+
+                            </table>
+
+                        </div>
+
+
+
+
+
+
+                        <!--
+                                                <div class="col">
+                                                    <canvas id="myChart" width="100px" height="100px"></canvas>
+                                                </div>
+                        -->
+
+                        <div class="col">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <td>종합 의견 </td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td style="border-top:none; white-space: pre-line" th:text="${result.a6}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer"/>
+</div>
+</body>
+
+</html>

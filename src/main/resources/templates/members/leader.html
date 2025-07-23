@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Member Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyLeaderHeader :: bodyLeaderHeader" />
+    <div class="jumbotron">
+
+        <h2 name="member" th:object="${member}" th:text="| ${member.dept} 팀장: ${member.id}|">로그인 사용자 부서,이름</h2>
+        <br><br>
+        <p>
+            <a class="btn btn-secondary btn-sm" href="/survey">평가지 생성</a>
+
+            <a class="btn btn-secondary btn-sm" href="/teamResultList">결과 보기 </a>
+
+       <!-- <form th:action="@{/logout}" method="POST">
+            <button class="btn btn-secondary btn-sm" type="submit">Logout</button>
+        </form>
+       -->
+        </p>
+    </div>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>

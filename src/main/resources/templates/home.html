@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<style>
+    #header_navi > li {
+        display: inline-block;
+        /*position: relative;
+        top: 10px;
+        left: 260px;*/
+    }
+    #header_navi > li > a {
+        display:block; position:relative; padding:20px;
+        /*
+        margin: 50px;
+        */
+    }
+    #header_navi > li > a > img {
+        width:100px; height:100px;
+    }
+    #header_navi > li > a > span {
+        position:absolute; bottom:0; left:50%; color:#666; line-height:1.462em; white-space:nowrap; transform:translate(-50%, 0)
+    }
+</style>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+
+
+    <div class="jumbotron">
+
+        <!--  <p>
+              <a class="btn btn-lg btn-secondary" href="/members/new">회원 가입</a>
+              <a class="btn btn-lg btn-secondary" href="/members/login"> 로그인 </a>
+          </p>
+        </div>-->
+        <!--<ul id="header_navi">
+
+            <li><a href="/members/new"><img src="img/login2.png"><span>회원가입</span></a></li>
+            <li><a href="/members/login"><img src="img/login2.png"><span>로그인</span></a></li>
+        </ul>
+-->
+
+
+
+      <!--  <button type="button" style="border: none; background: none" class="btm_image"><img href="/members/new" width="100px" height="100px" src="img/login2.png"><br>
+            회원가입</button>
+        <button type="button" style="border: none; background: none" class="btm_image"><img href="/members/login" width="100px" height="100px" src="img/login2.png"><br>
+        로그인</button>-->
+
+        <br>
+            <a class="btn btn-lg btn-secondary" href="/members/new">회원 가입</a>
+            <a class="btn btn-lg btn-secondary" href="/members/login"> 로그인 </a>
+
+
+
+        <br><br><h7 style="margin-bottom: 500px">동료 평가 사이트에 오신 것을 환영합니다! <br> 평가를 바탕으로 한 층 성장해보세요 :)</h7>
+
+    </div>
+
+
+
+    <div th:replace="fragments/footer :: footer" />
+</div>
+
+<!-- /container -->
+</body>
+</html>

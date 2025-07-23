@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyMemberHeader :: bodyMemberHeader"/>
+    <div>
+
+
+        <table class="table table-striped" th:object="${resultList}">
+            <thead>
+            <tr>
+                <th>평가 리스트</th>
+                <th> </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="result : ${resultList}">
+                <td th:text="${result.year+'년도 '+result.dept+' '+result.quarter+' 동료 평가'}"></td>
+
+<!--
+
+                <a th:if="${check.status.toString() == '평가하기'}" href="#"
+                   th:href="'javascript:review('+${check.id}+')'"
+                   class="btn btn-danger">평가하기</a>
+                <a th:if="${check.status.toString() == '평가완료'}">평가완료</a>
+
+-->
+
+
+                <td>
+
+                    <a th:if="${result.count}!=0">결과 집계 중</a>
+                    <a th:if="${result.count}==0" class="btn btn-danger" th:href="@{/result/{surveyId}(surveyId = ${result.id})}"> 결과보기</a>
+
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <div th:replace="fragments/footer :: footer"/>
+</div>
+</body>
+<script>
+
+</script>
+</html>
+

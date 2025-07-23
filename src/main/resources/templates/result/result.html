@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<style>
+    h1{
+       color:red;
+    }
+</style>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyMemberHeader :: bodyMemberHeader"/>
+
+
+    <div>
+        <h3 style="text-align: center" th:text="${survey.year+'년 '+survey.quarter+' 동료 평가 결과'}"></h3>
+    </div>
+
+    <br><br>
+
+    <div class="row">
+        <div class="col-8">
+            <label><b>피평가자</b></label><br>
+            <table>
+              <tr>
+                  <td th:width="100px">이름</td>
+                  <td th:text="${member.name}"></td>
+              </tr>
+              <tr>
+                  <td th:width="100px">부서</td>
+                  <td th:text="${member.dept}"></td>
+              </tr>
+              <tr>
+                  <td th:width="100px">직위</td>
+                  <td th:text="${member.rank}"></td>
+              </tr>
+
+            </table>
+
+
+        </div>
+
+        <div class="col-3">
+            <label><b>등급</b></label><br>
+            <h1 th:if="${average[5] >= 4}">A</h1>
+            <h1 th:if="${average[5] <4 and average[5]>=3}">B</h1>
+            <h1 th:if="${average[5] <3 and average[5]>=2}">C</h1>
+            <h1 th:if="${average[5] <2}">D</h1>
+
+        </div>
+    </div>
+
+
+<br>
+
+    <div class="row">
+        <div class="col">
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>평가 항목</th>
+                    <th>점수 (5점 만점)</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>상호 존중</td>
+                        <td th:text="${average[0]}"></td>
+                    </tr>
+                    <tr>
+                        <td>솔선 수범</td>
+                        <td th:text="${average[1]}"></td>
+                    </tr>
+                    <tr>
+                        <td>약속 이행</td>
+                        <td th:text="${average[2]}"></td>
+                    </tr>
+                    <tr>
+                        <td>업무 방식의 혁신</td>
+                        <td th:text="${average[3]}"></td>
+                    </tr>
+                    <tr>
+                        <td>긍정적인 의사소통</td>
+                        <td th:text="${average[4]}"></td>
+                    </tr>
+                    <tr>
+                        <td>최종 점수 </td>
+                        <td th:text="${average[5]}"></td>
+                    </tr>
+
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+
+
+
+
+
+        <div class="col">
+            <canvas id="myChart" width="300px" height="300px"></canvas>
+        </div>
+
+    <div>
+        <table  class="table table-bordered">
+            <thead>
+            <tr>
+                <td>종합 의견 </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="border-top:none; white-space: pre-line" th:text="${opinion}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+    <div th:replace="fragments/footer :: footer"/>
+</div>
+
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var context = document
+        .getElementById('myChart')
+        .getContext('2d');
+    var myChart = new Chart(context, {
+        type: 'radar', // 차트의 형태
+        data: {  // 차트에 들어갈 데이터
+            labels: [
+                //x 축
+                '상호 존중','솔선수범','약속 이행','업무 방식의 혁신','긍정적인 의사소통'
+            ],
+            datasets: [
+                { //데이터
+                    label: '능력 분석 그래프', //차트 제목
+                    fill: true, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                    data: [ /*[[${average[0]}]]*/,/*[[${average[1]}]]*/,/*[[${average[2]}]]*/,/*[[${average[3]}]]*/,/*[[${average[4]}]]*/
+                        //x축 label에 대응되는 데이터 값 여기 수정!!
+                    ],
+                    backgroundColor: [
+                        //색상
+                        'rgba(54, 162, 235, 0.2)'
+
+                    ],
+                    borderColor: ['rgb(54, 162, 235)'],
+                    pointBackgroundColor: ['rgb(54, 162, 235)'],
+                    pointBorderColor: ['#fff'],
+                    //borderWidth: 1 //경계선 굵기
+                }
+            ]
+        },
+        options: {
+            legend: {
+                display: true,
+            },
+            layout: {
+                padding: 5
+            },
+            scale: {
+                ticks: {
+                    beginAtZero: true,
+                    stepSize: 1,
+                },
+            },
+        },
+    });
+    /*]]>*/
+
+</script>
+
+</body>
+
+</html>

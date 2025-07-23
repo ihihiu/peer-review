@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="header" th:fragment="bodyMemberHeader">
+
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a style="text-decoration-line: none; color:grey;" th:href="@{/logout}"><h6>logout</h6></a>
+        </li>
+    </ul>
+
+    <div style="margin-bottom: 20px;">
+        <a th:href="@{/members/member}" style="text-decoration-line: none"><h3 class="text-muted">Peer Review</h3></a>
+    </div>
+
+
+</div>

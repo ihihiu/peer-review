@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<style>
+    .fieldError {
+        border-color: #bd2130;
+    }
+</style>
+<body>
+
+<div class="container">
+    <div th:replace="fragments/bodyLeaderHeader :: bodyLeaderHeader"/>
+    <form role="form" action="/survey" th:object="${surveyForm}" method="post">
+
+
+        <div class="form-select">
+            <label class="col-form-label">부서</label>
+            <select class="form-control" th:field="*{dept}">
+                <!---->
+                <option th:each="dept : ${member.dept}"
+                        th:value="${dept.name()}"
+                        th:text="${dept.name()}">
+                </option>
+            </select>
+        </div><br>
+
+
+
+<!--
+
+        <div class="form-group">
+                <label th:for="year">년도</label>
+                <input type="text" th:field="*{year}" class="form-control" placeholder="연도">
+            </div>
+
+-->
+
+<!--
+        <div class="form-select">
+            <label class="col-form-label">년도</label>
+            <select class="form-control" th:field="*{year}">
+                <option th:each="year : ${T(springproject.review.domain.Year).values()}"
+                        th:value="${year.name()}"
+                        th:text="${year.name()}">
+                </option>
+            </select>
+        </div>
+-->
+
+        <div class="form-select">
+            <label class="col-form-label">년도</label>
+            <select class="form-control" th:field="*{year}">
+                <option th:value="${#calendars.format(#calendars.createNow(), 'yyyy')}"
+                        th:text="${#calendars.format(#calendars.createNow(), 'yyyy')}">
+                </option>
+            </select>
+        </div><br>
+
+
+        <div class="form-select">
+            <label class="col-form-label">분기</label>
+            <select class="form-control" th:field="*{quarter}">
+                <option th:each="quarter : ${T(springproject.review.domain.Quarter).values()}"
+                        th:value="${quarter.name()}"
+                        th:text="${quarter.name()}">
+                </option>
+            </select>
+        </div><br>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-secondary">Create</button>
+        </div>
+
+    </form>
+    <br/>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+
+</body>
+
+
+</html>
