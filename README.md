@@ -28,7 +28,7 @@
 
 - H2 Database 기반의 ERD 설계 및 테이블 구조 구축  
 - 회원 가입 기능 구현 시 입력값 유효성 검증(Validation) 처리  
-- 팀장/팀원 구분에 따른 역할 기반 로그인 및 세션 관리 기능 구현    
+- 팀장/팀원 구분에 따른 역할 기반 로그인    
 - 제출된 평가 결과를 기반으로 한 평균 점수 계산 및 결과 조회 기능 개발
 - 동료 평가 결과 시각화 기능 개발 (점수 -> 레이더 차트)  
 - MVC 패턴에 기반한 Thymeleaf 템플릿 연동 및 동적 페이지 구성  
@@ -52,50 +52,106 @@
 ## 🖥️ 주요 화면
 
 ### [홈 화면]
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/a71786ce-544b-4a40-90ef-e9524d3e622c/Untitled.png)
+
+<p align="center">
+  <img width="400" alt="홈 화면" src="https://github.com/user-attachments/assets/4b530797-a02e-4b30-a226-1621e3230986" />
+</p>
+
+---
 
 ### 1. 회원 가입
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/b4727b18-af31-4f37-8512-6fd38a57e510/Untitled.png)
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/26f97cce-24ee-44e7-9287-86e0b9cf7155/Untitled.png)
+<p align="center">
+  <img width="360" height="360" alt="회원가입1" src="https://github.com/user-attachments/assets/1726905f-d236-4e4a-b20e-10e3aedaff55" />
+  &nbsp;&nbsp;
+  <img width="360" height="360" alt="회원가입2" src="https://github.com/user-attachments/assets/3f70502d-11cc-419b-a039-f631569ff9dd" />
+</p>
+
 - 회사 이메일로 회원 가입을 합니다.
-    - 아이디 중복 검사를 합니다.
-    - 이름은 2글자 이상, 비밀번호는 8자 이상 입력해야 합니다.
-    - 부서와 직위를 선택하여 회원 가입합니다.
- 
+- 아이디 중복 검사, 이름 2글자 이상, 비밀번호 8자 이상 입력 요구
+- 부서와 직위를 선택하여 가입 가능
+
+---
+
 ### 2. 로그인
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/723c5c22-badd-4354-a44f-d33069a34f1c/Untitled.png)
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/4e2ca576-e95a-44ad-ba5b-5cd4d5dc595a/Untitled.png)
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/9bb48dcf-d764-4c4a-a4f4-9bfba7438b7c/Untitled.png)
+
+<p align="center">
+  <img width="360" height="260" alt="로그인1" src="https://github.com/user-attachments/assets/3bc8d523-fe00-43b1-aa7c-12147740b7fe" />
+  &nbsp;&nbsp;
+  <img width="360" height="260" alt="로그인2" src="https://github.com/user-attachments/assets/cd80825f-c7c9-48e3-b7e5-b223264f118b" />
+</p>
+
+<p align="center">
+  <img width="600" height="360" alt="로그인3" src="https://github.com/user-attachments/assets/25c5c868-ed65-43d7-b069-7bf5df13cb6d" />
+</p>
+
+- 회사 이메일과 비밀번호로 로그인합니다.
+- 로그인 후 세션 기반으로 사용자 인증이 유지됩니다.
+
+---
 
 ### 3. [팀장] 평가지 생성
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/f2e8d296-a5cd-4181-89f9-c2324f2a8ad5/Untitled.png)
-- 본인의 부서, 현재 연도가 자동으로 선택됩니다.
-- 분기를 선택한 후 평가지를 생성할 수 있습니다.
+
+<p align="center">
+  <img width="500" height="420" alt="평가지 생성" src="https://github.com/user-attachments/assets/f45c126b-775b-4501-8e7c-8a4383dbf040" />
+</p>
+
+- 본인 부서와 현재 연도 자동 설정
+- 분기를 선택해 새 평가지 생성 가능
+
+---
 
 ### 4. [팀원] 평가하기
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/4cdc8a38-c514-48b5-abed-62df5f6f50e0/Untitled.png)
-- 평가하기를 누르면 소속된 팀원 리스트가 나옵니다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/b40afcc2-a46b-4461-9ea8-b09f9fbcfa73/Untitled.png)
-- 평가하기를 눌러 팀원을 평가할 수 있으며, 평가가 완료되면 상태가 바뀝니다.
+<p align="center">
+  <img width="420" height="320" alt="팀원 리스트" src="https://github.com/user-attachments/assets/5b622091-15b7-428b-8692-9fa86e5298e2" />
+</p>
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/5ccf3abe-d155-466d-b2c3-df717504d996/Untitled.png)
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/cf8696b8-3c37-4752-8a6e-a41950d470ba/Untitled.png)
+- 소속된 팀원 리스트가 자동으로 표시됩니다.
 
-### 5. [팀원] 결과 학인하기
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/36b72d1a-2e57-41de-922b-88f5c1f7cb16/Untitled.png)
-- 모든 팀원이 평가를 완료하면, 결과 집계 중에서 결과보기 버튼으로 바뀝니다.
+<p align="center">
+  <img width="400" height="270" alt="평가 상태 변경" src="https://github.com/user-attachments/assets/fd46fc76-8ac8-4b74-a661-44878703faaa" />
+</p>
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/b8a0214a-70a3-48fa-a74a-c1b760451d32/Untitled.png)
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/752e1dca-b05a-4a3d-aef7-0f2e5ea424ca/Untitled.png)
-- 피평가자의 점수가 소수점 둘째 자리까지 표시되며, 해당 점수가 레이다 차트로 표시됩니다.
-- 등급은 다음과 같이 알파벳으로 표현됩니다.
-    - 4점 이상: ‘A’   /  3점 이상 4점 미만 : ‘B’
-        
-        2점 이상 3점 미만 : ‘C’    /     2점 미만: ‘D’
+- 평가 완료 시, 평가 상태가 변경됩니다.
+
+<p align="center">
+  <img width="360" height="400" alt="평가 화면1" src="https://github.com/user-attachments/assets/b8fc266d-abf0-47c5-84be-8c66ff419e00" />
+  &nbsp;&nbsp;
+  <img width="360" height="320" alt="평가 화면2" src="https://github.com/user-attachments/assets/68401ee2-ebaa-4c77-ab0c-00bebbf9917f" />
+</p>
+
+---
+
+### 5. [팀원] 결과 확인하기
+
+<p align="center">
+  <img width="430" height="180" alt="결과 대기" src="https://github.com/user-attachments/assets/9b83a22e-4e4c-4d8e-b690-fd7beaf1397b" />
+</p>
+
+- 모든 팀원이 평가를 완료하면 결과 확인이 가능합니다.
+
+<p align="center">
+  <img width="430" height="180" alt="결과 확인 버튼" src="https://github.com/user-attachments/assets/5e88b66d-6d52-41e6-bfef-895859047002" />
+</p>
+
+<p align="center">
+  <img width="360" height="380" alt="점수 및 차트1" src="https://github.com/user-attachments/assets/04a687ea-d774-42a6-b160-2fe3623d8088" />
+</p>
+
+- 소수점 2자리까지 점수 표시 및 **레이더 차트 시각화**
+- 평가 등급 기준  
+  A (4점 이상) / B (3 ~ 4점) / C (2 ~ 3점) / D (2점 미만)
+
+---
 
 ### 6. [팀장] 결과 보기
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/ce4cc9db-5c27-4620-83e3-0b9523c4ca4e/Untitled.png)
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2eca7098-509b-4340-bd11-b6f6c99298a1/2397defe-2e71-47e2-b22f-5d6308e7eff9/Untitled.png)
-- 소속된 팀원의 모든 결과를 볼 수 있습니다.
+
+<p align="center">
+  <img width="360" height="420" alt="팀장 결과1" src="https://github.com/user-attachments/assets/7b4489fc-790a-4929-ad94-540747ce1a0a" />
+  &nbsp;&nbsp;
+  <img width="360" height="360" alt="팀장 결과2" src="https://github.com/user-attachments/assets/a27834f0-eb23-4a7b-9a91-f060d7e05461" />
+</p>
+
+- 팀장은 모든 팀원의 결과를 한눈에 확인할 수 있습니다.
+
